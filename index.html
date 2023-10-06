@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche de chaînes contenant des nombres</title>
+</head>
+<body>
+    <h1>Recherche de chaînes contenant des nombres</h1>
+    <form id="inputForm">
+        <label for="inputArray">Entrez une liste de chaînes (séparées par des virgules) :</label>
+        <input type="text" id="inputArray" name="inputArray">
+        <button type="button" onclick="findNumbers()">Rechercher</button>
+    </form>
+
+    <h2>Résultats :</h2>
+    <div id="resultDiv"></div>
+
+    <script>
+        function numInStr(arr) {
+            const result = [];
+            for (const str of arr) {
+                if (/\d/.test(str)) {
+                    result.push(str);
+                }
+            }
+            return result;
+        }
+
+        function findNumbers() {
+            const inputArray = document.getElementById("inputArray").value;
+            const inputArrayValues = inputArray.split(",");
+
+            const filteredArray = numInStr(inputArrayValues);
+
+            const resultDiv = document.getElementById("resultDiv");
+            resultDiv.innerHTML = "<strong>Résultats :</strong><br>" + JSON.stringify(filteredArray);
+        }
+    </script>
+</body>
+</html>
